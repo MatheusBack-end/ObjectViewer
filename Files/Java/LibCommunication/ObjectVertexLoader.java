@@ -18,8 +18,8 @@ public class ObjectVertexLoader
      * Class constructor.
      * 
      * @param file_name nome do arquivo .obj a ser gerado a malha, ele faz essa
-     * pequena adição no diretorio do arquivo a ser lido para o diretorio
-     * Andoid/data.../Files
+     * pequena adição no diretorio do arquivo a ser lido para o diretorio.
+     * Android/data.../Files
      */
     public ObjectVertexLoader(String file_name)
     {

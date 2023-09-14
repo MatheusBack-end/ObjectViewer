@@ -11,12 +11,23 @@ public class ObjectVertexWriter
     private Vertex vertex;
     private String file_path;
     
-    public ObjectVertexWriter(String file_path, Vertex vertex)
+    /**
+     * Class constructor.
+     *
+     * @param file_name  nome do arquivo a ser salvo.
+     * @param vertex     malha do objeto a ser salvo.
+     */
+    public ObjectVertexWriter(String file_name, Vertex vertex)
     {
-        this.file_path = Directories.internal() + "Files/" + file_path;
+        this.file_path = Directories.internal() + "Files/" + file_name;
         this.vertex = vertex;
     }
     
+    /**
+     * Salva a malha do objeto no arquivo passado no construtor.
+     *
+     * @see Obj.Objs
+     */
     public void write()
     {
         IntBuffer triangles = BuffersUtils.to_buffer(vertex.getTrianglesArray());
