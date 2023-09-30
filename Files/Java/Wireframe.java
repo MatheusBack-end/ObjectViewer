@@ -33,6 +33,8 @@ public class Wireframe extends Component
     private void draw_line(Vector3 point_a, Vector3 point_b)
     {
         int[] ids = new int[8];
+        
+        Console.log(poit_a - point_b);
     
         ids[0] = add_vertice(point_a.x + line_width, point_a.y, point_a.z);
         ids[1] = add_vertice(point_a.x - line_width, point_a.y, point_a.z);

@@ -2,6 +2,10 @@ private Vector3Buffer vertices;
 private NativeIntBuffer triangles;
 public int index = 0;
 public List<Vertex> background_vertexs;
+public int count_per_frame = 1;
+public boolean in_generate = true;
+public int offset;
+public SUIText debug;
 
 @Override
 public void start()
@@ -16,11 +20,27 @@ public void start()
     vertices = new Vector3Buffer(vertex.getVerticesBuffer());
     triangles = vertex.getTrianglesBuffer();
     
-    TimeCounter debug = new TimeCounter();
-    debug.start();
     generate();
-    debug.finish();
-    Console.log(debug.getElapsedMilliseconds() + "Ms Collider time");
+}
+
+@Override
+public void repeat()
+{
+    if(!in_generate && (offset + count_per_frame) < (background_vertexs.size() -1))
+    {
+        for(int i = 0; i < count_per_frame; i++)
+        {
+            Vertex vertex = background_vertexs.get(i + offset);
+            Collider collider = new Collider();
+            collider.setVertex(vertex);
+            myObject.addComponent(collider);
+        }
+        
+        Console.log(offset);
+        
+        offset += count_per_frame;
+        debug.setText(offset + "/" + background_vertexs.size());
+    }    
 }
 
 private void face(Vertex vertex)
@@ -64,12 +84,13 @@ private void generate()
         
         public void onEngine(Object result)
         {
-            for(Vertex vertex: (List<Vertex>)result)
+            in_generate = false;
+            /*for(Vertex vertex: (List<Vertex>)result)
             {
                 Collider collider = new Collider();
                 collider.setVertex(vertex);
                 myObject.addComponent(collider);
-            }
+            }*/
         }
     });
 }

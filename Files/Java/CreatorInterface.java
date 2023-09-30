@@ -9,7 +9,12 @@ public void start()
     
     model_renderer = myObject.findComponent(ModelRenderer.class);
     ObjectVertexLoader vertex = new ObjectVertexLoader(ViewerData.model_file_path);
-    Vertex vertex_loaded = vertex.get_object();
+    Vertex vertex_loaded = vertex.get_vertex_object();
+    
+    model_renderer.setVertex(vertex_loaded);
+        
+    if(true){return;}
+    
     
     if(!vertex.has_object_group())
     {
